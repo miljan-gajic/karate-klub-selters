@@ -1,0 +1,53 @@
+extends:
+  - "react-app"
+  - "prettier"
+  - "plugin:redux-saga/recommended"
+env:
+  "cypress/globals": true
+plugins:
+  - "react"
+  - "jest"
+  - "prettier"
+  - "cypress"
+rules:
+  semi: [2, "never", { beforeStatementContinuationChars: "always" }]
+  no-console: ["warn", { allow: ["warn", "error"] }]
+overrides:
+  - files:
+      - "*.ts"
+      - "*.tsx"
+    parser: "@typescript-eslint/parser"
+    plugins:
+      - "@typescript-eslint"
+    extends:
+      - "prettier"
+      - "plugin:@typescript-eslint/eslint-recommended"
+      - "plugin:@typescript-eslint/recommended"
+      - "plugin:cypress/recommended"
+    rules:
+      "@typescript-eslint/explicit-module-boundary-types": 0
+      "@typescript-eslint/camelcase": 0
+      "@typescript-eslint/ban-ts-comment": 0
+      "@typescript-eslint/ban-ts-ignore": 0
+      "@typescript-eslint/no-array-constructor": 1
+      "@typescript-eslint/no-namespace": 2
+      "@typescript-eslint/no-useless-constructor": 1
+      "@typescript-eslint/no-explicit-any": 0
+      "@typescript-eslint/explicit-function-return-type": 0
+      "@typescript-eslint/member-delimiter-style":
+        [2, { multiline: { delimiter: none }, singleline: { delimiter: semi } }]
+      no-array-constructor: 0
+      no-useless-constructor: 0
+      no-unused-vars: 0
+      no-undef: 0
+      react/prop-types: 0
+  - files:
+      - ".d.ts"
+    rules:
+      import/export: 0
+      no-redeclare: 0
+  - files:
+      - "*.test.*"
+    rules:
+      jest/expect-expect: 0
+      redux-saga/no-unhandled-errors: 0

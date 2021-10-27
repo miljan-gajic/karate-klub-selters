@@ -1,3 +1,4 @@
+import { TestComponent } from 'components/TestComponent'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -51,6 +52,7 @@ const Home: NextPage = () => {
             </p>
           </a>
         </div>
+        <TestComponent message="...from the component jerk!!!" />
       </main>
 
       <footer className={styles.footer}>
