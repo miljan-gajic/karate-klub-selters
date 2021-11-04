@@ -1,11 +1,6 @@
 import { extractJWT } from 'middleware/extractJWT'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-// type Data = {
-//   name: string
-//   message?: string
-// }
-
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'GET':
