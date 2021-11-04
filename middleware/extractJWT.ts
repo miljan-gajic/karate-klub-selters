@@ -9,17 +9,19 @@ export const extractJWT = (
     console.log('Validating a token')
     const jwtSecret = process.env.SERVER_TOKEN_SECRET as string
 
-    let token = req.headers.authorization?.split(' ')[1]
+    // let token = req.headers.authorization?.split(' ')[1]
+    const cookie = req.cookies.auth!
+    console.log('COOKIE', cookie)
 
-    if (token) {
-      jwt.verify(token, jwtSecret, (error, decoded) => {
+    if (cookie) {
+      jwt.verify(cookie, jwtSecret, (error, decoded) => {
         if (error) {
           return res.status(404).json({
             message: error.message,
             error,
           })
         } else {
-          res.locals.jwt = decoded
+          // res.locals.jwt = decoded
           return handler(req, res)
         }
       })
