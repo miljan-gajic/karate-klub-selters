@@ -1,17 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Response } from 'express'
 import jwt from 'jsonwebtoken'
+import logger from 'functions/logger'
 
 export const extractJWT = (
   handler: (req: NextApiRequest, res: NextApiResponse) => void
 ) => {
   return async (req: NextApiRequest, res: Response) => {
-    console.log('Validating a token')
+    logger.info('Validating a token')
     const jwtSecret = process.env.SERVER_TOKEN_SECRET as string
 
     // let token = req.headers.authorization?.split(' ')[1]
     const cookie = req.cookies.auth!
-    console.log('COOKIE', cookie)
 
     if (cookie) {
       jwt.verify(cookie, jwtSecret, (error, decoded) => {
@@ -26,6 +26,7 @@ export const extractJWT = (
         }
       })
     } else {
+      logger.error('Unauthorized..., token is missing')
       return res.status(401).json({
         message: 'Unauthorized',
       })

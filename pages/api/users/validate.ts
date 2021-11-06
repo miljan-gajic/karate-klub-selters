@@ -1,3 +1,4 @@
+import logger from 'functions/logger'
 import { extractJWT } from 'middleware/extractJWT'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -11,7 +12,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   async function validate(req: NextApiRequest, res: NextApiResponse) {
-    console.log('Token validated user authenticated')
+    logger.info('Token validated user authenticated')
 
     return res.status(200).json({
       message: 'Authorized',
