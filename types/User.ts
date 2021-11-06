@@ -1,4 +1,4 @@
-import { Document } from 'mongoose'
+import { Document, SchemaOptions } from 'mongoose'
 
 export enum UserRole {
   admin,
@@ -9,4 +9,4 @@ export type User = {
   username: string
   password: string
   role: UserRole
-} & Document
+} & Document<User>

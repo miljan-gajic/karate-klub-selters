@@ -17,6 +17,7 @@ export const signJWT = (
   try {
     jwt.sign(
       {
+        _id: user._id,
         username: user.username,
       },
       jwtSecret,

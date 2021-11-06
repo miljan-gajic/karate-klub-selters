@@ -3,8 +3,10 @@ import bcryptjs from 'bcryptjs'
 
 import { signJWT } from '../../../functions/signJWT'
 import User from '../../../models/Users'
-import dbConnect from '../../../lib/mongodb'
 import cookie from 'cookie'
+import { withDatabase } from 'middleware/withDatabase'
+import logger from 'functions/logger'
+import { omit } from 'functions/helpers'
 
 const cookieOptions = {
   httpOnly: true,
@@ -24,8 +26,8 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   async function login(req: NextApiRequest, res: NextApiResponse) {
-    await dbConnect()
     let { username, password } = req.body
+    const existingCookie = req.cookies.TOKEN!
 
     User.find({ username })
       .exec()
@@ -48,7 +50,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
                   message: 'Unauthorized',
                   error: _error,
                 })
-              } else if (token) {
+              } else if (token && !existingCookie) {
                 res.setHeader(
                   'Set-Cookie',
                   cookie.serialize('TOKEN', token, {
@@ -59,10 +61,20 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
                     path: '/',
                   })
                 )
+                const user = {
+                  _id: users[0]._id,
+                  username: users[0].username,
+                  createdAt: users[0].createdAt,
+                  updatedAt: users[0].updatedAt,
+                }
                 return res.status(200).json({
-                  message: 'Log in successfull',
+                  message: 'Log in successfully',
                   // token,
-                  user: users[0],
+                  user,
+                })
+              } else {
+                return res.status(500).json({
+                  message: `The ${users[0].username} is already logged in`,
                 })
               }
             })
@@ -78,4 +90,4 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default handler
+export default withDatabase(handler)
