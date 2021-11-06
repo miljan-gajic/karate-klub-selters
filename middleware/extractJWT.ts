@@ -26,7 +26,7 @@ export const extractJWT = (
         }
       })
     } else {
-      logger.info('Unauthorized..., TOKEN is missing')
+      logger.error('Unauthorized..., TOKEN is missing')
       return res.status(401).json({
         message: 'Unauthorized',
       })

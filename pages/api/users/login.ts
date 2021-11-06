@@ -13,10 +13,6 @@ const cookieOptions = {
   sameSite: 'Strict',
   secure: process.env.NODE_ENV === 'production',
 }
-// type Data = {
-//   name: string
-//   message?: string
-// }
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
