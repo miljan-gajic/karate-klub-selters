@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import bcryptjs from 'bcryptjs'
 import mongoose from 'mongoose'
+
 import User from '../../../models/Users'
-import dbConnect from '../../../lib/mongodb'
+import { withDatabase } from 'middleware/withDatabase'
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
@@ -14,7 +15,6 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   async function register(req: NextApiRequest, res: NextApiResponse) {
-    await dbConnect()
     let { username, password } = req.body
 
     bcryptjs.hash(password, 10, (hashError, hash) => {
@@ -47,4 +47,4 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default handler
+export default withDatabase(handler)

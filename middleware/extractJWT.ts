@@ -1,12 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { Response } from 'express'
+import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
 import logger from 'functions/logger'
 
-export const extractJWT = (
-  handler: (req: NextApiRequest, res: NextApiResponse) => void
-) => {
-  return async (req: NextApiRequest, res: Response) => {
+export const extractJWT = (handler: NextApiHandler) => {
+  return async (req: NextApiRequest, res: NextApiResponse) => {
     logger.info('Validating a token')
     const jwtSecret = process.env.SERVER_TOKEN_SECRET as string
 
@@ -21,7 +18,6 @@ export const extractJWT = (
             error,
           })
         } else {
-          // res.locals.jwt = decoded
           return handler(req, res)
         }
       })
