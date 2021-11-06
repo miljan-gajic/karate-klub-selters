@@ -55,7 +55,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
               } else if (token) {
                 res.setHeader(
                   'Set-Cookie',
-                  cookie.serialize('auth', token, {
+                  cookie.serialize('TOKEN', token, {
                     httpOnly: true, // making sure that JS doesn't have access to the cookie
                     secure: process.env.NODE_ENV !== 'development', // making sure that the cookie is only transferred through the HTTPS
                     sameSite: 'strict',

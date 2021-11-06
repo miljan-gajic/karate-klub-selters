@@ -11,7 +11,7 @@ export const extractJWT = (
     const jwtSecret = process.env.SERVER_TOKEN_SECRET as string
 
     // let token = req.headers.authorization?.split(' ')[1]
-    const cookie = req.cookies.auth!
+    const cookie = req.cookies.TOKEN!
 
     if (cookie) {
       jwt.verify(cookie, jwtSecret, (error, decoded) => {
@@ -26,7 +26,7 @@ export const extractJWT = (
         }
       })
     } else {
-      logger.error('Unauthorized..., token is missing')
+      logger.info('Unauthorized..., TOKEN is missing')
       return res.status(401).json({
         message: 'Unauthorized',
       })

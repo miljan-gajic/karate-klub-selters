@@ -2,13 +2,9 @@ import dbConnect from 'lib/mongodb'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import User from 'models/Users'
+import { extractJWT } from 'middleware/extractJWT'
 
-// type Data = {
-//   name: string
-//   message?: string
-// }
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler = (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'GET':
       return getAllUsers(req, res)
@@ -37,3 +33,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       })
   }
 }
+
+export default extractJWT(handler)
