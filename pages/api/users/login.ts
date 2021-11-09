@@ -66,6 +66,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
                   username: users[0].username,
                   createdAt: users[0].createdAt,
                   updatedAt: users[0].updatedAt,
+                  role: users[0].role,
                 }
                 return res.status(200).json({
                   message: 'Log in successfully',

@@ -1,7 +1,7 @@
 import { Schema, model, models } from 'mongoose'
 import { User } from 'types/User'
 
-const UserSchema = new Schema<User>(
+const UserSchema = new Schema(
   {
     password: { type: String, required: true, unique: true, dropDups: true },
     username: { type: String, required: true },
@@ -12,4 +12,4 @@ const UserSchema = new Schema<User>(
   }
 )
 
-export default models.User || model<User>('User', UserSchema)
+export default models.User || model('User', UserSchema)
