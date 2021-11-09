@@ -31,8 +31,8 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
         .exec()
         .then((users) => {
           res.status(200).json({
-            users,
             count: users.length,
+            users,
           })
         })
         .catch((error) => {
