@@ -17,33 +17,43 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   async function register(req: NextApiRequest, res: NextApiResponse) {
     let { username, password } = req.body
 
-    bcryptjs.hash(password, 10, (hashError, hash) => {
-      if (hashError) {
-        return res.status(500).json({
-          message: hashError.message,
-          error: hashError,
-        })
-      }
-      const user = new User({
-        _id: new mongoose.Types.ObjectId(),
-        username,
-        password: hash,
-      })
+    const filter = { username }
 
-      return user
-        .save()
-        .then((user) => {
-          return res.status(201).json({
-            user,
+    const users = await User.find(filter).select('-password').exec()
+
+    if (!users) {
+      bcryptjs.hash(password, 10, (hashError, hash) => {
+        if (hashError) {
+          return res.status(500).json({
+            message: hashError.message,
+            error: hashError,
           })
+        }
+        const user = new User({
+          _id: new mongoose.Types.ObjectId(),
+          username,
+          password: hash,
         })
-        .catch((error) => {
-          res.status(500).json({
-            message: error.message,
-            error,
+
+        return user
+          .save()
+          .then((user) => {
+            return res.status(201).json({
+              user,
+            })
           })
-        })
-    })
+          .catch((error) => {
+            res.status(500).json({
+              message: error.message,
+              error,
+            })
+          })
+      })
+    } else {
+      return res.status(420).json({
+        message: `The user with the username ${username} already exists, please try different username`,
+      })
+    }
   }
 }
 
