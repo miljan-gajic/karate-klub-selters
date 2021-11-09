@@ -21,7 +21,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 
     const users = await User.find(filter).select('-password').exec()
 
-    if (!users) {
+    if (!users || !users.length) {
       bcryptjs.hash(password, 10, (hashError, hash) => {
         if (hashError) {
           return res.status(500).json({
