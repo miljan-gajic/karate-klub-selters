@@ -5,16 +5,6 @@ import { signJWT } from '../../../functions/signJWT'
 import User from '../../../models/Users'
 import cookie from 'cookie'
 import { withDatabase } from 'middleware/withDatabase'
-import logger from 'functions/logger'
-import { omit } from 'functions/helpers'
-
-const cookieOptions = {
-  httpOnly: true,
-  maxAge: 2592000,
-  path: '/',
-  sameSite: 'Strict',
-  secure: process.env.NODE_ENV === 'production',
-}
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
