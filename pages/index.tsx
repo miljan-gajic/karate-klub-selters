@@ -1,7 +1,6 @@
 import axios from 'axios'
 import Container from 'components/Layout/Container'
 import Navigation from 'components/Layout/Navigation'
-import { TestComponent } from 'components/TestComponent'
 import { readCookieAndReturnUser } from 'functions/helpers'
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'

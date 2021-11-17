@@ -49,4 +49,4 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default withDatabase(extractJWT(handler))
+export default extractJWT(withDatabase(handler))
