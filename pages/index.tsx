@@ -1,11 +1,5 @@
-import axios from 'axios'
-import Container from 'components/Layout/Container'
-import Navigation from 'components/Layout/Navigation'
-import { readCookieAndReturnUser } from 'functions/helpers'
-import type { GetServerSideProps, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -17,10 +11,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container>
-        <Navigation />
+      <div>
         <main className={styles.main}></main>
-      </Container>
+      </div>
     </div>
   )
 }

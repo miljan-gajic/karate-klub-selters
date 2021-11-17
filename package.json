@@ -11,7 +11,6 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@types/cookie": "^0.4.1",
-    "antd": "^4.16.13",
     "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",
     "cookie": "^0.4.1",
@@ -23,11 +22,11 @@
     "node-sass": "^6.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "styled-components": "^5.3.3",
     "winston": "^3.3.3",
     "winston-sugar": "^1.1.4"
   },
   "devDependencies": {
-    "@types/antd": "^1.0.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.5",
     "@types/lodash": "^4.14.176",
