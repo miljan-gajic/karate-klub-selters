@@ -1,5 +1,5 @@
+import { withDatabase } from './../../../middleware/withDatabase'
 import { extractJWT } from 'middleware/extractJWT'
-import { withDatabase } from 'middleware/withDatabase'
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import User from '../../../models/Users'
 import jwt from 'jsonwebtoken'
@@ -51,4 +51,4 @@ const handler: NextApiHandler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default withDatabase(extractJWT(handler))
+export default extractJWT(withDatabase(handler))
