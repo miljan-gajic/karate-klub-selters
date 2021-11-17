@@ -20,7 +20,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 
     const users = await User.find(filter).select('-password').exec()
 
-    if (users && users.length === 1) {
+    if (users && users.length === 1 && users[0].role !== 'admin') {
       res.status(200).json({
         message: `User ${users[0].username} was successfully retrieved`,
         user: users[0],

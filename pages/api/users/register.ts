@@ -39,7 +39,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
           .save()
           .then((user) => {
             return res.status(201).json({
-              user,
+              message: 'User has been created',
             })
           })
           .catch((error) => {

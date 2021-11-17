@@ -5,5 +5,4 @@ export const PageContainer = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   padding: 5vh 0 0 0;
-  height: 100vh;
 `
