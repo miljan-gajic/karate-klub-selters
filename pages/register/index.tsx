@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
-import { PageContainer } from 'components/PagesContainer/styles/styled'
+import { PageContainer } from 'components/PagesContainer/styles'
 import logo from 'public/images/kk_selters_logo_register.jpg'
 import {
   RegisterPage,
@@ -14,9 +14,10 @@ import {
   RegisterButton,
   EyeRegister,
   EyeSlashRegister,
-} from 'components/Register/styled/styled'
+} from 'components/Register/styled'
+import { NextPage } from 'next'
 
-const Register = () => {
+const Register: NextPage = () => {
   const [passwordShown, setPasswordShown] = useState(false)
   const [error, setError] = useState()
   const userNameRef = useRef<HTMLInputElement>()
