@@ -23,19 +23,6 @@ const Register: NextPage = () => {
   const userNameRef = useRef<HTMLInputElement>()
   const passRef = useRef<HTMLInputElement>()
 
-  const handleSubmit = (user, pass) => {
-    console.log({ user, pass })
-    axios
-      .post('http://localhost:3000/api/users/login', {
-        username: user,
-        password: pass,
-      })
-      .then((res) => console.log(res.data))
-      .catch((err) => {
-        console.log(err)
-      })
-  }
-
   const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown)
   }
@@ -51,7 +38,6 @@ const Register: NextPage = () => {
           <StyledForm
             onSubmit={(e) => {
               e.preventDefault()
-              handleSubmit(userNameRef?.current?.value, passRef?.current?.value)
             }}
           >
             <InputElementsContainer>
@@ -77,6 +63,9 @@ const Register: NextPage = () => {
                 )}
               </StyledLabel>
             </InputElementsContainer>
+            {/* <a style={{ color: 'white' }} href="/api/auth/login">
+              Login
+            </a> */}
             <RegisterButton type="submit">Register fool</RegisterButton>
           </StyledForm>
         </RegisterFormWrapper>
