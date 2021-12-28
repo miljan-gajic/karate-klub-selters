@@ -38,3 +38,4 @@ yarn-error.log*
 
 #local workspaces configs
 .vscode
+.vscode/*.json
