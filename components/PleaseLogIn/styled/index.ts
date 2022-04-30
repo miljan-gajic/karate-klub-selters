@@ -12,6 +12,7 @@ export const PleaseLogInWrapper = styled.div`
 export const PleaseLoginHeading = styled.p`
   font-size: 2rem;
   color: #fff;
+  text-align: center;
 `
 
 export const LoginButton = styled.button`

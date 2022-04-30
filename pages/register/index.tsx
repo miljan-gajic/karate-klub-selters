@@ -15,13 +15,14 @@ import {
   EyeRegister,
   EyeSlashRegister,
 } from 'components/Register/styled'
+import { useUser } from '@auth0/nextjs-auth0'
 import { NextPage } from 'next'
 
 const Register: NextPage = () => {
   const [passwordShown, setPasswordShown] = useState(false)
-  const [error, setError] = useState()
   const userNameRef = useRef<HTMLInputElement>()
   const passRef = useRef<HTMLInputElement>()
+  const { user, error, isLoading } = useUser()
 
   const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown)
@@ -30,7 +31,7 @@ const Register: NextPage = () => {
   return (
     <PageContainer>
       <RegisterPage>
-        {/* {error && <div>{error}</div>} */}
+        {error && <div>{error}</div>}
         <LogoWrapper>
           <Image src={logo} alt="KK Selters Logo" />
         </LogoWrapper>
