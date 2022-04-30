@@ -12,14 +12,23 @@ const News: React.FC = () => {
   const router = useRouter()
 
   if (user) {
-    return <p>Hello from news</p>
+    return (
+      <div style={{ color: 'white' }}>
+        <p>Hello from the News page</p>
+        <div>
+          <p>username: {user.nickname}</p>
+          <p>email: {user.email}</p>
+          <img src={user ? user?.picture! : ''} alt="" />
+        </div>
+      </div>
+    )
   }
 
   return (
     <PageContainer>
       <PleaseLogInWrapper>
         <PleaseLoginHeading>
-          The page you are trying to access does not access or there are not
+          The page you are trying to access does not exist or there are not
           enough permissions
         </PleaseLoginHeading>
         <LoginButton onClick={() => router.push('/register')}>
